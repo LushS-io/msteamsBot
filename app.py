@@ -4,12 +4,12 @@
 # import for async functionality
 import asyncio
 
-from adapters import ConsoleAdapter # bot console functionality
+from adapters import ConsoleAdapter  # bot console functionality
 # teamsAdapter
 
 # Import Bots
-from bots import EchoBot # echoBot
-from bots import RootBot
+# from bots import RootBot  # rootBot to call other skills
+from bots.skills import EchoBot  # echoBot
 # attachmentBot
 # authBot
 # dialogBot
@@ -27,8 +27,8 @@ CONSOLE_ADAPTER = ConsoleAdapter()
 # Teams adapter
 
 # Create bot
-# Root bot references mutli skills
-BOT = RootBot()
+# Root bot references multi skills
+BOT = EchoBot()
 
 # Start async loop for continued bot conversation
 LOOP = asyncio.get_event_loop()
@@ -44,6 +44,3 @@ if __name__ == "__main__":
     finally:
         LOOP.stop()
         LOOP.close()
-
-
-
