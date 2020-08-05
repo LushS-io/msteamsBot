@@ -2,6 +2,7 @@
 
 # The root bot / consumer skill bot that will call other bots depending on
 # user response.
+from typing import List
 
 from botbuilder.core import(
     ActivityHandler,

@@ -32,7 +32,7 @@ class DefaultConfig:
     ]
     # Skill callers to those specified, "*" allows any caller
     # Ex: os.environ.get("AllowedCallers", ["54d3bb6a-3b6d-4ccd-bbfd-cad5c72fb53a"])
-    ALLOWED_CALLERS = os.getiron.get("AllowedCallers", ["*"])
+    ALLOWED_CALLERS = os.environ.get("AllowedCallers", ["*"])
 
 
 class SkillConfig:
