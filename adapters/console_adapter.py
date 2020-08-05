@@ -139,8 +139,7 @@ class ConsoleAdapter(BotAdapter):
                     await next_activity(i + 1)
                 elif activity.type == ActivityTypes.message:
                     if (
-                        activity.attachments is not None
-                        and len(activity.attachments) > 0
+                        activity.attachments is not None and len(activity.attachments) > 0
                     ):
                         append = (
                             "(1 attachment)"
