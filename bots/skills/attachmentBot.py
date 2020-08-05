@@ -1,0 +1,1 @@
+# bot to handle attachments from sources such as web chat / telegram / bot framework emulator
