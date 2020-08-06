@@ -1,18 +1,31 @@
 # Simple echo bot
 
-from sys import exit
+from botbuilder.core import ActivityHandler, MessageFactory, TurnContext
+from botbuilder.schema import Activity, ActivityTypes, EndOfConversationCodes
 
+class EchoBot(ActivityHandler):
+    async def on_message_activity(self, turn_context: TurnContext):
+        if "end" in turn_context.activity.text or "stop" in turn_context.activity.text:
+            # Send End of conversation at the end.
+            await turn_context.send_activity(
+                MessageFactory.text("Ending conversation from the skill...")
+            )
 
-class EchoBot:
-    async def on_turn(self, context):
-        # Check to see if this activity is an incoming message.
-        # (It could theoretically be another type of activity.)
-        if context.activity.type == "message" and context.activity.text:
-            # Check to see if the user sent a simple "quit" message.
-            if context.activity.text.lower() == "quit":
-                # Send a reply.
-                await context.send_activity("Bye!")
-                exit(0)
-            else:
-                # Echo the message text back to the user.
-                await context.send_activity(f"I heard you say {context.activity.text}")
+            end_of_conversation = Activity(type=ActivityTypes.end_of_conversation)
+            end_of_conversation.code = EndOfConversationCodes.completed_successfully
+            await turn_context.send_activity(end_of_conversation)
+        else:
+            await turn_context.send_activity(
+                MessageFactory.text(f"Echo (python): {turn_context.activity.text}")
+            )
+            await turn_context.send_activity(
+                MessageFactory.text(
+                    f'Say "end" or "stop" and I\'ll end the conversation and back to the parent.'
+                )
+            )
+
+    async def on_end_of_conversation_activity(self, turn_context: TurnContext):
+        # This will be called if the root bot is ending the conversation.  Sending additional messages should be
+        # avoided as the conversation may have been deleted.
+        # Perform cleanup of resources if needed.
+        pass
