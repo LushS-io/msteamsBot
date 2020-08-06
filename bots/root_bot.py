@@ -106,24 +106,25 @@ class RootBot(ActivityHandler):
     async def on_members_added_activity(
         self, members_added: List[ChannelAccount], turn_context: TurnContext
     ):
-            for member in members_added:  # Check member against current member list
-                if member.id != turn.context.activity.recipient.id:  # if the recipientID is not on the list then...
-                    await turn_context.send_activity(
-                        MessageFactory.text("Hello and Welcome!")  # say greeting
-                    )
+        # Check member against current member list
+        for member in members_added:
+            if member.id != turn_context.activity.recipient.id:
+                await turn_context.send_activity(
+                    MessageFactory.text("Hello and Welcome!")  # say greeting
+                )
 
-async def __send_to_skill(
-    self, turn_context: TurnContext, target_skill: BotFrameworkSkill
-):
-    # note: always save changes before calling a skill so that any activity generate by the skill
-    # will have access to current accurate state
+    async def __send_to_skill(
+        self, turn_context: TurnContext, target_skill: BotFrameworkSkill
+    ):
+        # note: always save changes before calling a skill so that any activity generate by the skill
+        # will have access to current accurate state
 
-    await self._conversation_state.save_changes(turn_context, force=True)
+        await self._conversation_state.save_changes(turn_context, force=True)
 
-    # route the activity to the skill
-    await self._skill_client.post_activity_to_skill(
-        self._bot_id,
-        target_skill,
-        self._skills_config.SKILL_HOST_ENDPOINT,
-        turn_context.activity,
-    )
+        # route the activity to the skill
+        await self._skill_client.post_activity_to_skill(
+            self._bot_id,
+            target_skill,
+            self._skills_config.SKILL_HOST_ENDPOINT,
+            turn_context.activity,
+        )
