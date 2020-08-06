@@ -19,7 +19,7 @@ from config import DefaultConfig, SkillConfiguration
 
 # variable to hold the active skill
 ACTIVE_SKILL_PROPERTY_NAME = "activeSkillProperty"
-TARGET_SKILL_ID = "EchoBotSkill"
+TARGET_SKILL_ID = "EchoSkillBot"
 
 
 # Different than TeamsActivityHandler
