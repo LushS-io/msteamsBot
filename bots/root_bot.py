@@ -15,7 +15,7 @@ from botbuilder.core.skills import BotFrameworkSkill
 from botbuilder.schema import ActivityTypes, ChannelAccount
 from botbuilder.integration.aiohttp.skills import SkillHttpClient  # skill to speak to web client via http
 
-from config import DefaultConfig, SkillConfig
+from config import DefaultConfig, SkillConfiguration
 
 # variable to hold the active skill
 ACTIVE_SKILL_PROPERTY_NAME = "activeSkillProperty"
@@ -27,7 +27,7 @@ class RootBot(ActivityHandler):
     def __init__(
         self,
         conversation_state: ConversationState,
-        skills_config: SkillConfig,
+        skills_config: SkillConfiguration,
         skill_client: SkillHttpClient,
         config: DefaultConfig,
     ):

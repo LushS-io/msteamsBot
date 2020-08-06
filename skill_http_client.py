@@ -11,7 +11,7 @@ from botbuilder.integration.aiohttp import (
 )
 
 from botbuilder.core.skills import (
-    SkillConversationIdFactory,
+    ConversationIdFactoryBase,
     BotFrameworkSkill,
 )
 from botbuilder.schema import Activity
@@ -22,7 +22,7 @@ class SkillHttpClient(BotFrameworkHttpClient):
     def __init__(
         self,
         credential_provider: SimpleCredentialProvider,
-        skill_conversation_id_factory: SkillConversationIdFactory,
+        skill_conversation_id_factory: ConversationIdFactoryBase,
     ):
         if not skill_conversation_id_factory:
             raise TypeError("skill_conversation_id_factory can't be None")
