@@ -16,7 +16,7 @@ class DefaultConfig:
         # Kirin-TeamsBot
     )
     APP_PASSWORD = os.environ.get(
-        "MicrosoftAppPassword", "MicrosoftAppPassword", "V88ZT~_rOnsEEy.59b7qg_MYW8JiZD2ja4"
+        "MicrosoftAppPassword", "V88ZT~_rOnsEEy.59b7qg_MYW8JiZD2ja4"
         # Kirin-TeamsBot
     )
     SKILL_HOST_ENDPOINT = "http://localhost:3980/api/skills"
