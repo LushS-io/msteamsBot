@@ -12,12 +12,12 @@ class DefaultConfig:
 
     PORT = 3980
     APP_ID = os.environ.get(
-        "MicrosoftAppId", "35cdaeee-82e0-4f6b-b8b6-48700fc5acfb"
-        # SimpleRootBot
+        "MicrosoftAppId", "87880ec8-6989-4b4f-b13b-cba69dc2b82b"
+        # Kirin-TeamsBot
     )
     APP_PASSWORD = os.environ.get(
-        "MicrosoftAppPassword", "l1TBRXA96Ik29Sp~_49hcr8GDD8n-3J~PO"
-        # SimpleRootBot
+        "MicrosoftAppPassword", "MicrosoftAppPassword", "V88ZT~_rOnsEEy.59b7qg_MYW8JiZD2ja4"
+        # Kirin-TeamsBot
     )
     SKILL_HOST_ENDPOINT = "http://localhost:3980/api/skills"
     SKILLS = [
