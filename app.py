@@ -91,7 +91,7 @@ CREDENTIAL_PROVIDER = SimpleCredentialProvider(CONFIG.APP_ID, CONFIG.APP_PASSWOR
 CLIENT = SkillHttpClient(CREDENTIAL_PROVIDER, ID_FACTORY)
 
 # Web adapter w/ error handling
-WEB_ADAPTER = AdapterWithErrorHandler(
+ADAPTER = AdapterWithErrorHandler(
     SETTINGS, CONFIG, CONVERSATION_STATE, CLIENT, SKILL_CONFIG
 )
 
@@ -105,7 +105,7 @@ WEB_ADAPTER = AdapterWithErrorHandler(
 BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG)
 
 SKILL_HANDLER = SkillHandler(
-    WEB_ADAPTER, BOT, ID_FACTORY, CREDENTIAL_PROVIDER, AuthenticationConfiguration()
+    ADAPTER, BOT, ID_FACTORY, CREDENTIAL_PROVIDER, AuthenticationConfiguration()
 )
 
 # Listen for incoming responses on /api/messages
