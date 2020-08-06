@@ -21,3 +21,8 @@ A Bot that can sit on Microsoft Teams and handle attachments, sending it to Shar
 8. Install ngrok if you don't have already
 9. Run $ ngrok http 3980
 10. ...
+
+
+# Tips
+Using Visual studio code debugger. Run from app.py file unless specificed in launch.json
+
