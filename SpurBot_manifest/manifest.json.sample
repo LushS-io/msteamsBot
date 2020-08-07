@@ -1,0 +1,133 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.7",
+    "version": "0.1.0",
+    "showLoadingIndicator": true,
+    "id": "5b58b0a0-bd6f-11ea-a709-5fbdf9a14333",
+    "packageName": "kirin.rasa.atlas.com",
+    "developer": {
+        "name": "Troy Kirin",
+        "websiteUrl": "https://teams.troykirin.io",
+        "privacyUrl": "https://teams.troykirin.io/privacy.html",
+        "termsOfUseUrl": "https://teams.troykirin.io/tou.html"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Atlas",
+        "full": "Atlas (Rasa React MsTeams App)"
+    },
+    "description": {
+        "short": "Proof of Concept Connecting Rasa to MS Teams",
+        "full": "Proof of Concept Connecting Rasa to MS Teams"
+    },
+    "accentColor": "#F9F9FA",
+    "configurableTabs": [
+        {
+            "configurationUrl": "https://teams.troykirin.io/rasaTab/config.html?name={loginHint}&tenant={tid}&group={groupId}&theme={theme}",
+            "canUpdateConfiguration": true,
+            "scopes": [
+                "team",
+                "groupchat"
+            ]
+        }
+    ],
+    "staticTabs": [
+        {
+            "entityId": "Rasa",
+            "name": "Rasa",
+            "contentUrl": "https://teams.troykirin.io/rasaTab/index.html",
+            "websiteUrl": "https://teams.troykirin.io",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "aboutAtlas",
+            "name": "About Atlas",
+            "contentUrl": "https://teams.troykirin.io/atlasBot/aboutAtlas.html",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "bots": [
+        {
+            "botId": "87880ec8-6989-4b4f-b13b-cba69dc2b82b",
+            "scopes": [
+                "team",
+                "personal"
+            ],
+            "commandLists": [
+                {
+                    "scopes": [
+                        "personal"
+                    ],
+                    "commands": [
+                        {
+                            "title": "Help",
+                            "description": "Shows help information"
+                        }
+                    ]
+                },
+                {
+                    "scopes": [
+                        "team"
+                    ],
+                    "commands": [
+                        {
+                            "title": "Help",
+                            "description": "Shows help information"
+                        }
+                    ]
+                }
+            ],
+            "supportsFiles": true,
+            "isNotificationOnly": false
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "f00c9d86-af5d-43ea-b12f-982178ed1399",
+            "canUpdateConfiguration": true,
+            "commands": [
+                {
+                    "id": "atlasExtentionMessageExtension",
+                    "type": "action",
+                    "title": "Atlas Extention",
+                    "description": "Add a clever description here",
+                    "initialRun": true,
+                    "fetchTask": true,
+                    "context": [
+                        "compose",
+                        "commandBox",
+                        "message"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "title": "param",
+                            "description": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "teams.troykirin.io",
+        "*.github.com",
+        "*.google.com",
+        "*.jsdelivr.net"
+    ],
+    "webApplicationInfo": {
+        "id": "f00c9d86-af5d-43ea-b12f-982178ed1399",
+        "resource": "Resource URL for acquiring auth token for SSO"
+    }
+}

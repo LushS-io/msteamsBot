@@ -26,6 +26,16 @@ class DefaultConfig:
             "app_id": "fddbb187-b979-43a7-aa9a-4630c931184c",
             "skill_endpoint": "http://localhost:39783/api/messages",
         },
+        {
+            "id": "TeamsFileBot",
+            "app_id": "cb8fe097-cb7c-4e1c-bf47-7afab84fdd0a",
+            "skill_endpoint": "https://teamsfilebot.troykirin.io/api/messages"
+        },
+        {
+            "id": "AttachmentBot",
+            "app_id": "2d4dc6c8-2b32-46c2-aa5a-363625f93e1e",
+            "skill_endpoint": "https://teams.troykirin.io/api/messages"
+        }
     ]
 
     # Callers to only those specified, '*' allows any caller.

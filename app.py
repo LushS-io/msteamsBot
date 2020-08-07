@@ -9,8 +9,6 @@ import asyncio
 import sys
 import traceback
 from datetime import datetime
-
-
 from http import HTTPStatus
 
 # Core imports
@@ -21,7 +19,7 @@ from botbuilder.core import (
     BotFrameworkAdapterSettings,
     ConversationState,
     MemoryStorage,
-    # TurnContext,
+    TurnContext,
     # BotFrameworkAdapter, # using adapter with errors instead
 )
 
@@ -41,15 +39,17 @@ from botframework.connector.auth import (
 )
 from bots.skill_conversation_id_factory import SkillConversationIdFactory
 from bots.authentication import AllowedSkillsClaimsValidator
-from bots.root_bot import RootBot
 from config import DefaultConfig, SkillConfiguration
 from adapter_with_error_handler import AdapterWithErrorHandler
 
-# teamsAdapter
+# ---- Import Bots ----
+from bots.root_bot import RootBot
+
+# ---- Import Dialog ----
+from dialogs import MainDialog
 
 # # Import Bots
 # from bots import RootBot  # rootBot to call other skills
-from bots.skills import EchoBot  # echoBot
 # attachmentBot
 # authBot
 # dialogBot
@@ -90,19 +90,18 @@ ID_FACTORY = SkillConversationIdFactory(STORAGE)
 CREDENTIAL_PROVIDER = SimpleCredentialProvider(CONFIG.APP_ID, CONFIG.APP_PASSWORD)
 CLIENT = SkillHttpClient(CREDENTIAL_PROVIDER, ID_FACTORY)
 
-# Web adapter w/ error handling
+# adapter w/ error handling
 ADAPTER = AdapterWithErrorHandler(
     SETTINGS, CONFIG, CONVERSATION_STATE, CLIENT, SKILL_CONFIG
 )
 
-# Teams adapter
-# TODO: Teams adapter
-#
-#
-
 # ---- Create bot ----
 """ Uses root bot for a multi skill functionality """
 BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG)
+
+# ---- Create Dialog ----
+DIALOG = MainDialog()
+
 
 SKILL_HANDLER = SkillHandler(
     ADAPTER, BOT, ID_FACTORY, CREDENTIAL_PROVIDER, AuthenticationConfiguration()
