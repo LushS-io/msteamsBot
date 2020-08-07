@@ -87,7 +87,7 @@ class RootBot(ActivityHandler):
             )
             TARGET_SKILL_ID = "TeamsFileBot"
             skill = self._skills_config.SKILLS[TARGET_SKILL_ID]
-            
+
             # save active skill in state
             await self._active_skill_property.set(turn_context, skill)
 
