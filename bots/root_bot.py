@@ -22,7 +22,11 @@ from botbuilder.schema import(
 )
 from botbuilder.integration.aiohttp.skills import SkillHttpClient  # skill to speak to web client via http
 
+# ---- Dialogs ----
+from botbuilder.dialogs import Dialog
+
 from config import DefaultConfig, SkillConfiguration
+
 
 # variable to hold the active skill
 ACTIVE_SKILL_PROPERTY_NAME = "activeSkillProperty"
@@ -37,6 +41,7 @@ class RootBot(ActivityHandler):
         skills_config: SkillConfiguration,
         skill_client: SkillHttpClient,
         config: DefaultConfig,
+        dialog: Dialog
     ):
         # instantiate class variables
         self._bot_id = config.APP_ID

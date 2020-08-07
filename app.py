@@ -40,7 +40,7 @@ from botframework.connector.auth import (
 from bots.skill_conversation_id_factory import SkillConversationIdFactory
 from bots.authentication import AllowedSkillsClaimsValidator
 from config import DefaultConfig, SkillConfiguration
-from adapter_with_error_handler import AdapterWithErrorHandler
+from adapters.adapter_with_error_handler import AdapterWithErrorHandler
 
 # ---- Import Bots ----
 from bots.root_bot import RootBot
