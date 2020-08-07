@@ -95,12 +95,12 @@ ADAPTER = AdapterWithErrorHandler(
     SETTINGS, CONFIG, CONVERSATION_STATE, CLIENT, SKILL_CONFIG
 )
 
-# ---- Create bot ----
-""" Uses root bot for a multi skill functionality """
-BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG)
-
 # ---- Create Dialog ----
 DIALOG = MainDialog()
+
+# ---- Create bot ----
+""" Uses root bot for a multi skill functionality """
+BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG, DIALOG)
 
 
 SKILL_HANDLER = SkillHandler(
