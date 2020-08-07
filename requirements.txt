@@ -7,3 +7,9 @@ botbuilder-schema>=4.7.0
 botframework-connector>=4.7.0
 botbuilder-integration-aiohttp>=4.9.1
 botbuilder-dialogs>=4.9.1
+# botbuilder-ai
+# botbuilder-applicatiioninsights
+# botbuilder-integration-application
+# botbuilder-azure
+# botbuilder-adapters-slack
+botbuilder-testing
