@@ -37,6 +37,6 @@ steps:
     pytest
   displayName: 'pytest'
 
-  - script: /
+- script: /
     pip install tox
-    displayName: 'Install Tox'
+  displayName: 'Install Tox'
