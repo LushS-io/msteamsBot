@@ -29,7 +29,7 @@ setup(
     keywords=["python", "bots", "ai", "botframework", "botbuilder"],
     install_requires=REQUIRES,
     packages=[
-        "botframework.connector",
+        "bots.state_management_bot",
     ],
     include_package_data=True,
     long_description=long_description,
