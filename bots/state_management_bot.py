@@ -1,3 +1,21 @@
+import asyncio
+
+from botbuilder.core import(
+    ActivityHandler,
+    TurnContext,
+    ConversationState,
+    UserState,
+    MessageFactory
+)
+
+from botbuilder.schema import (
+    HeroCard
+)
+
+from storage.conversation_data import ConversationData
+from storage.user_profile import UserProfile
+
+
 # A State management bot
 class StateManagementBot(ActivityHandler):
     # On creation, ask for the conversation_state and user_state
@@ -16,17 +34,17 @@ class StateManagementBot(ActivityHandler):
         # create object member variables
         self.conversation_state = conversation_state
         self.user_state = user_state
-    
-    # create object member accessing functions
-    self.conversation_state_accessor = self.conversation_state.create_property("ConversationData")
 
-    self.user_profile_accessor = self.user_state.create_property("UserProfile")
+        # create object member accessing functions
+        self.conversation_state_accessor = self.conversation_state.create_property("ConversationData")
+
+        self.user_profile_accessor = self.user_state.create_property("UserProfile")
 
     # Member function: when bot receives any activity
     async def on_message_activity(self, turn_context: TurnContext):
         # get the user profile and conversation data
-        user_profile = self.user_profile_accessor.get(turn_context, user_profile)
-        conversation_data = self.conversation_state_accessor.get(turn_context, conversation_data)
+        user_profile = await self.user_profile_accessor.get(turn_context, UserProfile)
+        conversation_data = await self.conversation_state_accessor.get(turn_context, ConversationData)
 
         # no userProfile name detected
         if user_profile.name is None:
@@ -34,8 +52,8 @@ class StateManagementBot(ActivityHandler):
             # if prompt for username has not been made
             if conversation_data.prompted_for_username is False:
                 # have bot send message asking for name
-                turn_context.sendActivity.text(
-                    MessageFactory.text("What shall I call you?")
+                await turn_context.send_activity(
+                    f"What shall I call you?"
                 )
                 # change conversation data flag, prompting for username to True
                 conversation_data.prompted_for_username = True
@@ -43,10 +61,12 @@ class StateManagementBot(ActivityHandler):
             # bot does see a username
             else:
                 # look at incoming activity text, save name
-                user_profile.name = await turn_context.activity.text
+                user_profile.name = turn_context.activity.text
 
                 # awknowledge name received
-                await turn_context.sendActivity.text(MessageFactory.text(f"{} What a wonderful name!", user_profile.name))
+                await turn_context.send_activity(
+                    MessageFactory.text(f"{user_profile.name}, \n What a wonderful name!")
+                )
 
         # Bot has a name to work with
         else:
@@ -70,7 +90,7 @@ class StateManagementBot(ActivityHandler):
     # on every turn, do the following
     async def on_turn(self, turn_context: TurnContext):
         # inherit everything from the turn_context
-        super().on_turn(turn_context)
+        await super().on_turn(turn_context)
 
         # save conversation state
         await self.conversation_state.save_changes(turn_context)

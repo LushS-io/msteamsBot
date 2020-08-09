@@ -43,6 +43,10 @@ from bots.authentication import AllowedSkillsClaimsValidator
 from config import DefaultConfig, SkillConfiguration
 from adapters.adapter_with_error_handler import AdapterWithErrorHandler
 
+# ---- For State Management Bot ----
+from storage.conversation_data import ConversationData
+from storage.user_profile import UserProfile
+
 # ---- Import Bots ----
 from bots.root_bot import RootBot
 from bots.state_management_bot import StateManagementBot
@@ -84,7 +88,7 @@ SETTINGS = BotFrameworkAdapterSettings(
 
 # Conversation storage & state
 MEMORY = MemoryStorage()
-USER_STATE = UserState()
+USER_STATE = UserState(MEMORY)
 # TODO: CosmosDB
 CONVERSATION_STATE = ConversationState(MEMORY)
 
@@ -103,7 +107,8 @@ DIALOG = MainDialog()
 
 # ---- Create bot ----
 """ Uses root bot for a multi skill functionality """
-BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG, DIALOG)
+# BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG, DIALOG)
+BOT = StateManagementBot(CONVERSATION_STATE, USER_STATE)
 
 
 SKILL_HANDLER = SkillHandler(
