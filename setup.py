@@ -17,6 +17,9 @@ REQUIRES = [
 
 root = os.path.abspath(os.path.dirname(__file__))
 
+with open(os.path.join(root, "README.md"), encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name=NAME,
     version=VERSION,
