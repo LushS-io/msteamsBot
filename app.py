@@ -33,12 +33,12 @@ from botbuilder.core.integration import (
 # Imports for bot skill hand off
 from botbuilder.core.skills import SkillHandler
 from botbuilder.integration.aiohttp.skills import SkillHttpClient
-from botbuilder.schema import Activity  #, ActivityTypes
+from botbuilder.schema import Activity
 from botframework.connector.auth import (
     AuthenticationConfiguration,
     SimpleCredentialProvider
 )
-from bots.skill_conversation_id_factory import SkillConversationIdFactory
+from helpers.skill_conversation_id_factory import SkillConversationIdFactory
 from bots.authentication import AllowedSkillsClaimsValidator
 from config import DefaultConfig, SkillConfiguration
 from adapters.adapter_with_error_handler import AdapterWithErrorHandler
