@@ -30,6 +30,10 @@ setup(
     install_requires=REQUIRES,
     packages=[
         "bots",
+        "dialogs",
+        "adapters",
+        "helpers",
+        "storage"
     ],
     include_package_data=True,
     long_description=long_description,
