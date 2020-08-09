@@ -8,11 +8,11 @@ REQUIRES = [
     "requests==2.23.0",
     "jsonpickle==1.2",
     "requests_oauthlib==1.3",
-    "botbuilder-core==4.10.0",
-    "botbuilder-schema==4.10.0",
-    "botframework-connector==4.10.0",
-    "botbuilder-integration-aiohttp==4.10.0",
-    "botbuilder-dialogs==4.10.0"
+    "botbuilder-core>=4.9.1",
+    "botbuilder-schema>=4.9.1",
+    "botframework-connector>=4.9.1",
+    "botbuilder-integration-aiohttp>=4.9.1",
+    "botbuilder-dialogs>=4.9.1"
 ]
 
 root = os.path.abspath(os.path.dirname(__file__))
