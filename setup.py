@@ -29,7 +29,7 @@ setup(
     keywords=["python", "bots", "ai", "botframework", "botbuilder"],
     install_requires=REQUIRES,
     packages=[
-        "bots.state_management_bot",
+        "bots",
     ],
     include_package_data=True,
     long_description=long_description,
