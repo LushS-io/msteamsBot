@@ -45,6 +45,7 @@ from adapters.adapter_with_error_handler import AdapterWithErrorHandler
 
 # ---- Import Bots ----
 from bots.root_bot import RootBot
+from bots.state_management_bot import StateManagementBot
 
 # ---- Import Dialog ----
 from dialogs import MainDialog
