@@ -12,4 +12,3 @@ class ConversationData:
         self.channel_id = channel_id
         self.timestamp = timestamp
         self.prompted_for_username = prompted_for_username
-        super().__init__()
