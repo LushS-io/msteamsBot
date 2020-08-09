@@ -20,6 +20,7 @@ from botbuilder.core import (
     ConversationState,
     MemoryStorage,
     TurnContext,
+    UserState
     # BotFrameworkAdapter, # using adapter with errors instead
 )
 
@@ -81,12 +82,13 @@ SETTINGS = BotFrameworkAdapterSettings(
 )
 
 # Conversation storage & state
-STORAGE = MemoryStorage()
+MEMORY = MemoryStorage()
+USER_STATE = UserState()
 # TODO: CosmosDB
-CONVERSATION_STATE = ConversationState(STORAGE)
+CONVERSATION_STATE = ConversationState(MEMORY)
 
 # Conversation ID & credentials
-ID_FACTORY = SkillConversationIdFactory(STORAGE)
+ID_FACTORY = SkillConversationIdFactory(MEMORY)
 CREDENTIAL_PROVIDER = SimpleCredentialProvider(CONFIG.APP_ID, CONFIG.APP_PASSWORD)
 CLIENT = SkillHttpClient(CREDENTIAL_PROVIDER, ID_FACTORY)
 
