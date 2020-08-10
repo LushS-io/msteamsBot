@@ -39,7 +39,7 @@ from botframework.connector.auth import (
     SimpleCredentialProvider
 )
 from helpers.skill_conversation_id_factory import SkillConversationIdFactory
-from bots.authentication import AllowedSkillsClaimsValidator
+from authentication import AllowedSkillsClaimsValidator
 from config import DefaultConfig, SkillConfiguration
 from adapters.adapter_with_error_handler import AdapterWithErrorHandler
 
@@ -135,7 +135,6 @@ async def messages(req: Request) -> Response:
 APP = web.Application(middlewares=[aiohttp_error_middleware])
 APP.router.add_post("/api/messages", messages)
 APP.router.add_routes(aiohttp_channel_service_routes(SKILL_HANDLER, "/api/skills"))
-
 
 if __name__ == "__main__":
     try:
