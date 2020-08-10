@@ -1,25 +1,23 @@
-# Main app begins app
-# references rootBot to hand off skills to other bots
+# Runs web app for RootBot to hand off skills to other bots
 
-# unused rn
 # import for async functionality
-import asyncio
-
-# system imports
 import sys
 import traceback
 from datetime import datetime
-from http import HTTPStatus
 
-# Core imports
-from aiohttp import web
+# Web Imports
+import asyncio
+from http import HTTPStatus
+from aiohttp import web  # TCPConnector, ClientSession
 from aiohttp.web import Request, Response
 from aiohttp.web_response import json_response
+
+# Core imports
 from botbuilder.core import (
     BotFrameworkAdapterSettings,
-    ConversationState,
-    MemoryStorage,
     TurnContext,
+    MemoryStorage,
+    ConversationState,
     UserState
     # BotFrameworkAdapter, # using adapter with errors instead
 )
@@ -54,24 +52,14 @@ from bots.state_management_bot import StateManagementBot
 # ---- Import Dialog ----
 from dialogs import MainDialog
 
-# # Import Bots
+# ---- Import Bots ----
 # from bots import RootBot  # rootBot to call other skills
-# attachmentBot
-# authBot
-# dialogBot
-# proactiveBot
-# teamsFileBot
-# sharepointBot
-# msGraphBot
-# telegramBot
-# helpdeskBot
 
 # ---- CONFIGURATION ----
-# config.py
 CONFIG = DefaultConfig()
 SKILL_CONFIG = SkillConfiguration()
 
-# Whitelist skills from skill_config - skills allowed to be called
+# ---- Whitelist skills ---- from skill_config - skills allowed to be called
 ALLOWED_CALLER_IDS = {s.app_id for s in [*SKILL_CONFIG.SKILLS.values()]}
 CLAIMS_VALIDATOR = AllowedSkillsClaimsValidator(ALLOWED_CALLER_IDS)
 AUTH_CONFIG = AuthenticationConfiguration(
@@ -79,7 +67,6 @@ AUTH_CONFIG = AuthenticationConfiguration(
 )
 
 # ---- ADAPTER ----
-# adapter settings
 SETTINGS = BotFrameworkAdapterSettings(
     app_id=CONFIG.APP_ID,
     app_password=CONFIG.APP_PASSWORD,
@@ -87,9 +74,8 @@ SETTINGS = BotFrameworkAdapterSettings(
 )
 
 # Conversation storage & state
-MEMORY = MemoryStorage()
+MEMORY = MemoryStorage()  # TODO: Switch to CosmosDB
 USER_STATE = UserState(MEMORY)
-# TODO: CosmosDB
 CONVERSATION_STATE = ConversationState(MEMORY)
 
 # Conversation ID & credentials
@@ -106,11 +92,10 @@ ADAPTER = AdapterWithErrorHandler(
 DIALOG = MainDialog()
 
 # ---- Create bot ----
-""" Uses root bot for a multi skill functionality """
 # BOT = RootBot(CONVERSATION_STATE, SKILL_CONFIG, CLIENT, CONFIG, DIALOG)
 BOT = StateManagementBot(CONVERSATION_STATE, USER_STATE)
 
-
+# ---- SKILL HANDLER ----
 SKILL_HANDLER = SkillHandler(
     ADAPTER, BOT, ID_FACTORY, CREDENTIAL_PROVIDER, AuthenticationConfiguration()
 )
