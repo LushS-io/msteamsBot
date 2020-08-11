@@ -19,7 +19,7 @@ class DefaultConfig:
         "MicrosoftAppPassword", "V88ZT~_rOnsEEy.59b7qg_MYW8JiZD2ja4"
         # Kirin-TeamsBot
     )
-    SKILL_HOST_ENDPOINT = "http://localhost:3980/api/skills"
+    SKILL_HOST_ENDPOINT = "http://127.0.0.1:3980/api/skills"
     SKILLS = [
         {
             "id": "EchoSkillBot",
