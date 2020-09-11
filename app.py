@@ -123,7 +123,7 @@ APP.router.add_routes(aiohttp_channel_service_routes(SKILL_HANDLER, "/api/skills
 
 if __name__ == "__main__":
     try:
-        web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)  # TODO: Change host to Azure / deploy from Raspberry Pi
+        web.run_app(APP, host="localhost", port=CONFIG.PORT)  # TODO: Change host to Azure / deploy from Raspberry Pi
     except Exception as error:
         raise error
 
